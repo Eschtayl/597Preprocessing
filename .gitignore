@@ -1,0 +1,13 @@
+# Ignore data folders
+data/
+datasets/
+
+# Ignore large file formats
+*.csv
+*.rds
+*.h5
+*.tif
+*.parquet
+
+# Ignore Python environment cache
+__pycache__/

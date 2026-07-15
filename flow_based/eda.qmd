@@ -1,0 +1,42 @@
+---
+title: "beneign"
+format: pdf
+editor: visual
+---
+
+```{r}
+beneign = read.csv('BenignTraffic.pcap_Flow.csv')
+beneign1 = read.csv('BenignTraffic1.pcap_Flow.csv')
+beneign2 = read.csv('BenignTraffic2.pcap_Flow.csv')
+beneign3 = read.csv('BenignTraffic3.pcap_Flow.csv')
+
+
+```
+
+```{r}
+colnames(beneign)
+
+head(beneign)
+```
+
+```{r}
+library(tidyverse)
+glimpse(beneign)
+
+skimr::skim(beneign)
+
+
+```
+
+```{r}
+library(tidyverse)
+
+library(readr)
+library(purrr)
+
+path <- path.expand("~/Documents/UVic/Summer 2026/ECE 592B Professionalism part III/Capstone/Flow Based")
+files <- list.files(path = path, pattern = "\\.csv$", full.names = TRUE)
+
+# Load and combine all CSVs into a single data frame
+df <- map_df(files, read_csv)
+```
