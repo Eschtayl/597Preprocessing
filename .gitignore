@@ -4,10 +4,7 @@ datasets/
 
 # Ignore large file formats
 *.csv
-*.rds
-*.h5
-*.tif
-*.parquet
+*.pdf
 
 # Ignore Python environment cache
 __pycache__/
