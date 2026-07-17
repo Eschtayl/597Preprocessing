@@ -31,37 +31,105 @@ q1_p                    0.215304
 
 ### PHASE 2 — Isolation Forest ###
 
-Threshold: 0.0048122189054838616
-Precision: 0.0710
-Recall: 0.3363
-F1: 0.1173
-FPR: 0.1099
-FNR: 0.6637
-AUC-ROC: 0.7523
-Confusion matrix [tn, fp, fn, tp]: [44507, 5493, 829, 420]
+Threshold: -0.01660592644393183
+Precision: 0.0593
+Recall: 0.4554
+F1: 0.1049
+FPR: 0.1769
+FNR: 0.5446
+AUC-ROC: 0.7403
+Confusion matrix [tn, fp, fn, tp]: [41157, 8843, 666, 557]
 
 Per-attack detection rate:
-  DDOS-HTTP_flood: 0.3404
-  DNS_spoofing: 0.1923
-  DoS-HTTP: 0.6833
-  XSS: 0.2522
-  brute_force: 0.1685
+  DDOS-HTTP_flood: 0.5284
+  DNS_spoofing: 0.2984
+  DoS-HTTP: 0.7689
+  XSS: 0.3966
+  brute_force: 0.2907
+
 
 ### PHASE 2 — Autoencoder ###
 
-Threshold: 0.07596293091773987
-Precision: 0.5120
-Recall: 0.4341
-F1: 0.4698
-FPR: 0.0098
-FNR: 0.5659
-AUC-ROC: 0.9143
-Confusion matrix [tn, fp, fn, tp]: [49510, 490, 670, 514]
+Threshold: 0.08372266590595245
+Precision: 0.5538
+Recall: 0.4415
+F1: 0.4914
+FPR: 0.0087
+FNR: 0.5585
+AUC-ROC: 0.9159
+Confusion matrix [tn, fp, fn, tp]: [49565, 435, 683, 540]
 
 Per-attack detection rate:
-  DDOS-HTTP_flood: 0.8057
-  DNS_spoofing: 0.2117
-  DoS-HTTP: 0.9028
-  XSS: 0.0253
-  brute_force: 0.1688
+  DDOS-HTTP_flood: 0.6507
+  DNS_spoofing: 0.2056
+  DoS-HTTP: 0.7769
+  XSS: 0.0886
+  brute_force: 0.4806
+
+
+### PHASE 2 — Autoencoder architecture tuning (val MSE) ###
+
+  architecture            val_mse
+  (128, 64, 32)           0.004967  <-- selected
+  (64, 32, 16)            0.012953
+  (32, 16, 8)             0.040740
+  (64, 16, 4)             0.050535
+
+Selected architecture: (128, 64, 32)
+
+### PHASE 2 — Autoencoder (tuned) ###
+
+Threshold: 0.035858068615198135
+Precision: 0.6516
+Recall: 0.5642
+F1: 0.6047
+FPR: 0.0074
+FNR: 0.4358
+AUC-ROC: 0.9258
+Confusion matrix [tn, fp, fn, tp]: [49631, 369, 533, 690]
+
+Per-attack detection rate:
+  DDOS-HTTP_flood: 0.8253
+  DNS_spoofing: 0.2177
+  DoS-HTTP: 0.8845
+  XSS: 0.1013
+  brute_force: 0.7791
+
+
+### PHASE 2 — Ensemble (IF+AE score fusion) ###
+
+Threshold: 0.9256090300069002
+Precision: 0.1617
+Recall: 0.3107
+F1: 0.2127
+FPR: 0.0394
+FNR: 0.6893
+AUC-ROC: 0.8554
+Confusion matrix [tn, fp, fn, tp]: [48030, 1970, 843, 380]
+
+Per-attack detection rate:
+  DDOS-HTTP_flood: 0.3712
+  DNS_spoofing: 0.1895
+  DoS-HTTP: 0.5857
+  XSS: 0.2152
+  brute_force: 0.1938
+
+
+### PHASE 2 — IF on AE latent + recon error ###
+
+Threshold: -0.04761087688925819
+Precision: 0.0488
+Recall: 0.6729
+F1: 0.0911
+FPR: 0.3206
+FNR: 0.3271
+AUC-ROC: 0.7361
+Confusion matrix [tn, fp, fn, tp]: [33969, 16031, 400, 823]
+
+Per-attack detection rate:
+  DDOS-HTTP_flood: 0.6507
+  DNS_spoofing: 0.4556
+  DoS-HTTP: 0.8446
+  XSS: 0.6034
+  brute_force: 0.7984
 

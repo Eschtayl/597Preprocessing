@@ -78,6 +78,18 @@ def write_metrics_to_file(metrics, attack_rates, threshold, path=RESULTS_FILE, m
     print(f'Appended results to {path}')
 
 
+def write_tuning_table(results, best_dims, path=RESULTS_FILE):
+    # results: list of (hidden_dims, val_mse); selection is by lowest val MSE
+    with open(path, 'a') as f:
+        f.write('\n### PHASE 2 — Autoencoder architecture tuning (val MSE) ###\n\n')
+        f.write('  architecture            val_mse\n')
+        for hidden_dims, val_mse in results:
+            marker = '  <-- selected' if hidden_dims == best_dims else ''
+            f.write(f'  {str(hidden_dims):<22}  {val_mse:.6f}{marker}\n')
+        f.write(f'\nSelected architecture: {best_dims}\n')
+    print(f'Appended tuning table to {path}')
+
+
 def print_metrics(metrics, attack_rates):
     print('--- Detection metrics (test) ---')
     print(f"precision: {metrics['precision']:.4f}")

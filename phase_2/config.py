@@ -45,3 +45,16 @@ AE_BATCH_SIZE = 256
 AE_LEARNING_RATE = 1e-3
 AE_WEIGHT_DECAY = 1e-5
 AE_VAL_FRACTION = 0.1
+
+# Candidate architectures for systematic AE tuning (selected by benign val MSE)
+AE_HIDDEN_DIMS_GRID = [
+    (128, 64, 32),
+    (64, 32, 16),
+    (32, 16, 8),
+    (64, 16, 4),
+]
+
+# Ensemble (score fusion of IF + AE)
+# method: 'mean' | 'max' | 'weighted'
+ENSEMBLE_METHOD = 'mean'
+ENSEMBLE_WEIGHT_AE = 0.6
